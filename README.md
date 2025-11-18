@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Punjabi Darbar Menu</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 30px 10px;
+      color: #333;
+      backdrop-filter: blur(5px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      overflow-x: hidden;
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.85);
+      z-index: -1;
+    }
+
+    h1 {
+      color: #b71c1c;
+      text-align: center;
+      font-size: 2.5rem;
+      margin: 10px 0;
+      letter-spacing: 2px;
+      animation: fadeInDown 1s ease forwards;
+    }
+
+    .logo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #b71c1c;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      animation: fadeIn 1s ease forwards;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      animation: fadeInUp 1.5s ease forwards;
+    }
+
+    .tab-btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 25px;
+      background: #b71c1c;
+      color: #fff;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .tab-btn:hover {
+      background: #d32f2f;
+      transform: scale(1.05);
+    }
+
+    .tab-btn.active {
+      background: #2e7d32;
+    }
+
+    .menu {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      padding: 20px 25px;
+      width: 100%;
+      max-width: 750px;
+      display: none;
+      flex-direction: column;
+      gap: 20px;
+      animation: fadeIn 1.2s ease forwards;
+    }
+
+    .menu.active {
+      display: flex;
+    }
+
+    h2 {
+      color: #b71c1c;
+      border-bottom: 2px solid #b71c1c;
+      display: inline-block;
+      padding-bottom: 5px;
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+      animation: fadeInLeft 1s ease forwards;
+    }
+
+    .item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px dashed #ccc;
+      padding: 10px 0;
+      transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateY(15px);
+      animation: fadeInUp 0.8s ease forwards;
+      animation-delay: 0.3s;
+    }
+
+    .item:hover {
+      background-color: #fff6f2;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+      transform: scale(1.02);
+    }
+
+    .item img {
+      width: 60px;
+      height: 60px;
+      border-radius: 10px;
+      object-fit: cover;
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
+
+    .item:hover img {
+      transform: scale(1.1);
+    }
+
+    .details {
+      flex: 1;
+      margin-left: 10px;
+      font-weight: 500;
+    }
+
+    .details small {
+      display: block;
+      font-weight: normal;
+      color: #555;
+      font-size: 13px;
+      margin-top: 3px;
+    }
+
+    .price {
+      color: #2e7d32;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 900px) {
+      .menu {
+        width: 95%;
+        padding: 15px;
+      }
+      h1 {
+        font-size: 1rem;
+      }
+    }
+
+    /* === ANIMATIONS === */
+    @keyframes fadeIn {
+      0% {opacity: 0; transform: scale(0.95);}
+      100% {opacity: 1; transform: scale(1);}
+    }
+
+    @keyframes fadeInDown {
+      0% {opacity: 0; transform: translateY(-20px);}
+      100% {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes fadeInUp {
+      0% {opacity: 0; transform: translateY(20px);}
+      100% {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes fadeInLeft {
+      0% {opacity: 0; transform: translateX(-30px);}
+      100% {opacity: 1; transform: translateX(0);}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="overlay"></div>
+
+  <img src="https://lh3.googleusercontent.com/gps-cs-s/AG0ilSznHnW3PNXaC6rQaqP9kMTHndCTZz92y0OJXrGSLbk7DxA11pf1g_R_Y-Z5ITXtfvyVFNRAJETg8CiesGJPnHaUdy6-bhkiYFDTxtJ5kSIBwQtrm2Jm_-TOdG_WywzHFoWUhw6f=s1360-w1360-h1020-rw" alt="Punjabi Darbar Logo" class="logo">
+  <h1>🍽 PUNJABI DARBAR 🍽</h1>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-lang="english">English</button>
+    <button class="tab-btn" data-lang="hindi">हिन्दी</button>
+    <button class="tab-btn" data-lang="marathi">मराठी</button>
+  </div>
+
+  <!-- ENGLISH MENU -->
+  <div class="menu active" data-lang="english">
+    <div class="menu-section">
+      <h2>SALAD AND RAITA</h2>
+      <div class="item"><img src="https://feelgoodfoodie.net/wp-content/uploads/2024/06/Mixed-Greens-Salad-08.jpg"><div class="details"><strong>GREEN SALAD</strong><small>Fresh mix of cucumber, tomato, carrot, and lettuce.</small></div><div class="price">₹100</div></div>
+      <div class="item"><img src="https://www.indianveggiedelight.com/wp-content/uploads/2020/11/boondi-raita-1536x2048.jpg"><div class="details"><strong>BOONDI RAITA</strong><small>Crispy boondi in chilled yogurt with mild spices.</small></div><div class="price">₹100</div></div>
+      <div class="item"><img src="https://www.plantbasedredhead.com/wp-content/uploads/2024/06/raita-mit-gurken-tomaten-zwiebel-vegan-mixed-veg-raita-cucumber-tomato-onion-mint_plantbasedredhead_1x1.jpg"><div class="details"><strong>MIX VEG RAITA</strong><small>Yogurt blended with cucumber, onion, tomato, and spices.</small></div><div class="price">₹80</div></div>
+      <div class="item"><img src="https://enjoyinfourseason.com/wp-content/uploads/2022/05/Fourseason-PLAIN-CURD.jpg"><div class="details"><strong>PLAIN CURD</strong><small>Fresh homemade curd, smooth and cooling.</small></div><div class="price">₹50</div></div>
+      <div class="item"><img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Fried_Masala_Papad.jpg"><div class="details"><strong>FRIED PAPAD</strong><small>Crunchy papad deep-fried and served hot.</small></div><div class="price">₹30</div></div>
+      <div class="item"><img src="https://i.pinimg.com/736x/bc/b7/d6/bcb7d654e8e5b917eaf75cf8eff99c90.jpg"><div class="details"><strong>MASALA PAPAD</strong><small>Papad topped with onions, tomatoes, and chat masala.</small></div><div class="price">₹45</div></div>
+      <div class="item"><img src="https://i.pinimg.com/1200x/ad/e9/93/ade9930860389b173f88ef4a524d604b.jpg"><div class="details"><strong>ROASTED PAPAD</strong><small>Roasted crispy papad served with a smoky touch.</small></div><div class="price">₹30</div></div>
+    </div>
+
+    <div class="menu-section">
+      <h2>BEVERAGES</h2>
+      <div class="item"><img src="https://i.pinimg.com/736x/97/7f/16/977f16f7f3e39dc9f015d9441a903e0b.jpg"><div class="details"><strong>MINERAL WATER</strong><small>Pure and refreshing bottled water.</small></div><div class="price">₹20</div></div>
+      <div class="item"><img src="https://i.pinimg.com/1200x/c2/aa/86/c2aa86736b4d9b650f12d65c3947e804.jpg"><div class="details"><strong>FRESH LIME WATER</strong><small>Refreshing lemon drink with a tangy twist.</small></div><div class="price">₹80</div></div>
+      <div class="item"><img src="https://i.pinimg.com/736x/9e/7a/e4/9e7ae430087b45866e3277ba88dbc69f.jpg"><div class="details"><strong>FRESH LIME SODA</strong><small>Lemon soda mix – perfect for summer thirst.</small></div><div class="price">₹110</div></div>
+      <div class="item"><img src="https://i.pinimg.com/1200x/72/35/31/7235310bc5006df6513a2129c0c87842.jpg"><div class="details"><strong>VIRGIN MOJITO</strong><small>Minty and refreshing mocktail with lime and soda.</small></div><div class="price">₹120</div></div>
+      <div class="item"><img src="https://i.pinimg.com/736x/ea/76/40/ea76403ee1bcb4d5da319115b9a5cff8.jpg"><div class="details"><strong>BUTTER MILK</strong><small>Lightly spiced, cooling buttermilk drink.</small></div><div class="price">₹60</div></div>
+      <div class="item"><img src="https://i.pinimg.com/1200x/5b/47/c9/5b47c93f1ca8e76d53f720ae1472950c.jpg"><div class="details"><strong>LASSI</strong><small>Traditional sweet yogurt drink from Punjab.</small></div><div class="price">₹80</div></div>
+      <div class="item"><img src="https://i.pinimg.com/736x/79/6c/34/796c34906c9111f02f41a319298a261b.jpg"><div class="details"><strong>COLD DRINK</strong><small>Refreshing carbonated soft drink.</small></div><div class="price">₹25</div></div>
+    </div>
+
+    <div class="menu-section">
+      <h2>SOUPS</h2>
+      <div class="item"><img src="https://i.pinimg.com/1200x/de/9c/64/de9c64bbc85ae9554708dc3f388a7988.jpg"><div class="details"><strong>VEG HOT AND SOUR SOUP</strong><small>Spicy and tangy soup with fresh vegetables.</small></div><div class="price">₹99</div></div>
+      <div class="item"><img src="https://i.pinimg.com/736x/ca/54/54/ca54544b2c308f248425147001be1b07.jpg"><div class="details"><strong>VEG LEMON CORIANDER SOUP</strong><small>Light soup flavored with lemon and coriander.</small></div><div class="price">₹100</div></div>
+      <div class="item"><img src="https://i.pinimg.com/736x/a1/4d/59/a14d595797bf421cd91cca756d882ca8.jpg"><div class="details"><strong>VEG MANCHOW SOUP</strong><small>Hot Indo-Chinese soup topped with crispy noodles.</small></div><div class="price">₹100</div></div>
+      <div class="item"><img src="https://i.pinimg.com/1200x/3c/29/0b/3c290be19ba094cd2795f39488e4aeac.jpg"><div class="details"><strong>VEG NOODLE SOUP</strong><small>Warm and mild soup with noodles and vegetables.</small></div><div class="price">₹99</div></div>
+    </div>
+
+    <div class="menu-section">
+      <h2>STARTERS</h2>
+      <div class="item"><img src="https://i.pinimg.com/736x/7d/8a/12/7d8a12aa7a8599e72c85d21388c280f8.jpg"><div class="details"><strong>CHEESE CORN BALLS</strong><small>Cheesy corn-filled balls deep-fried till golden.</small></div><div class="price">₹220</div></div>
+      <div class="item"><img src="https://i.pinimg.com/1200x/be/7b/c9/be7bc98fc9cb1dcc8f9cbf4bd0da85ba.jpg"><div class="details"><strong>POTATO CROQUETTES</strong><small>Crispy potato rolls stuffed with mild spices.</small></div><div class="price">₹199</div></div>
+      <div class="item"><img src="https://i.pinimg.com/736x/4b/60/e8/4b60e8541069c5f7dd86110df4afbda0.jpg"><div class="details"><strong>CHEESE CHASKA</strong><small>Cheese bites full of creamy flavor and crunch.</small></div><div class="price">₹250</div></div>
+      <div class="item"><img src="https://i.pinimg.com/736x/e0/5f/9d/e05f9dd0a0db30d3097b3b1e094abdec.jpg"><div class="details"><strong>PANEER POPCORN</strong><small>Small bites of paneer coated and fried crisp.</small></div><div class="price">₹250</div></div>
+      <div class="item"><img src="https://i.pinimg.com/736x/10/65/24/106524877e55b8a04135577c9fd65db4.jpg"><div class="details"><strong>FISH FINGER</strong><small>Golden fried fish served with tartar sauce.</small></div><div class="price">₹340</div></div>
+      <div class="item"><img src="https://i.pinimg.com/1200x/77/45/54/774554e07ee69477f9c7dca2f3b6baab.jpg"><div class="details"><strong>CHICKEN POPCORN</strong><small>Bite-sized crispy fried chicken chunks.</small></div><div class="price">₹299</div></div>
+      <div class="item"><img src="https://i.pinimg.com/1200x/4e/a4/a1/4ea4a1b16e84f8310a3319d7760606d3.jpg"><div class="details"><strong>ARABITA PASTA</strong><small>Spicy tomato-based pasta cooked Italian-style.</small></div><div class="price">₹250</div></div>
+      <div class="item"><img src="https://i.pinimg.com/736x/5f/b9/ca/5fb9ca7393ac6c9d3c209c73d7f0999c.jpg"><div class="details"><strong>SPAGHETTI PASTA</strong><small>Classic spaghetti tossed with herbs and cheese.</small></div><div class="price">₹260</div></div>
+      <div class="item"><img src="https://i.pinimg.com/736x/e8/49/97/e849973f5d177440cf2d9cdbcbca24e9.jpg"><div class="details"><strong>VEG MANCHURIAN DRY</strong><small>Crispy veg balls tossed in spicy Manchurian sauce.</small></div><div class="price">₹199</div></div>
+      <div class="item"><img src="https://i.pinimg.com/1200x/56/d9/53/56d95390b09e676191e43e6494c8dcc5.jpg"><div class="details"><strong>CHILLI POTATO</strong><small>Fried potato tossed in tangy chili sauce.</small></div><div class="price">₹199</div></div>
+      <div class="item"><img src="https://i.pinimg.com/1200x/3e/8a/7c/3e8a7cf89e33a1a5691d9775861a8c51.jpg"><div class="details"><strong>PANEER 65</strong><small>Spicy and flavorful paneer cubes South-Indian style.</small></div><div class="price">₹220</div></div>
+      <div class="item"><img src="https://i.pinimg.com/1200x/bd/d2/cf/bdd2cf973419568da097ed78072c43d2.jpg"><div class="details"><strong>PANEER CHILLI DRY</strong><small>Paneer cubes sautéed with capsicum and spicy sauce.</small></div><div class="price">₹220</div></div>
+    </div>
+  </div>
+
+ <!-- HINDI MENU -->
+<div class="menu" data-lang="hindi">
+  <div class="menu-section">
+    <h2>सलाद और रायता</h2>
+    <div class="item"><img src="https://feelgoodfoodie.net/wp-content/uploads/2024/06/Mixed-Greens-Salad-08.jpg"><div class="details"><strong>ग्रीन सलाद</strong><small>खीरा, टमाटर, गाजर और लेट्यूस का ताज़ा मिश्रण।</small></div><div class="price">₹100</div></div>
+    <div class="item"><img src="https://www.indianveggiedelight.com/wp-content/uploads/2020/11/boondi-raita-1536x2048.jpg"><div class="details"><strong>बूंदी रायता</strong><small>खस्ता बूंदी ठंडे दही में हल्के मसालों के साथ।</small></div><div class="price">₹100</div></div>
+    <div class="item"><img src="https://www.plantbasedredhead.com/wp-content/uploads/2024/06/raita-mit-gurken-tomaten-zwiebel-vegan-mixed-veg-raita-cucumber-tomato-onion-mint_plantbasedredhead_1x1.jpg"><div class="details"><strong>मिक्स वेज रायता</strong><small>दही में खीरा, प्याज, टमाटर और मसाले मिलाए गए।</small></div><div class="price">₹80</div></div>
+    <div class="item"><img src="https://enjoyinfourseason.com/wp-content/uploads/2022/05/Fourseason-PLAIN-CURD.jpg"><div class="details"><strong>सादा दही</strong><small>घर का बना ताज़ा और ठंडा दही।</small></div><div class="price">₹50</div></div>
+    <div class="item"><img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Fried_Masala_Papad.jpg"><div class="details"><strong>फ्राइड पापड़</strong><small>गरमागरम तले हुए कुरकुरे पापड़।</small></div><div class="price">₹30</div></div>
+    <div class="item"><img src="https://i.pinimg.com/736x/bc/b7/d6/bcb7d654e8e5b917eaf75cf8eff99c90.jpg"><div class="details"><strong>मसाला पापड़</strong><small>पापड़ पर प्याज, टमाटर और चाट मसाला डाला गया।</small></div><div class="price">₹45</div></div>
+    <div class="item"><img src="https://i.pinimg.com/1200x/ad/e9/93/ade9930860389b173f88ef4a524d604b.jpg"><div class="details"><strong>रोस्टेड पापड़</strong><small>धुएँ की खुशबू वाला भुना हुआ कुरकुरा पापड़।</small></div><div class="price">₹30</div></div>
+  </div>
+
+  <div class="menu-section">
+    <h2>पेय पदार्थ</h2>
+    <div class="item"><img src="https://i.pinimg.com/736x/97/7f/16/977f16f7f3e39dc9f015d9441a903e0b.jpg"><div class="details"><strong>मिनरल वॉटर</strong><small>शुद्ध और ताज़ा बोतलबंद पानी।</small></div><div class="price">₹20</div></div>
+    <div class="item"><img src="https://i.pinimg.com/1200x/c2/aa/86/c2aa86736b4d9b650f12d65c3947e804.jpg"><div class="details"><strong>फ्रेश नींबू पानी</strong><small>ताज़ा नींबू पेय खट्टे स्वाद के साथ।</small></div><div class="price">₹80</div></div>
+    <div class="item"><img src="https://i.pinimg.com/736x/9e/7a/e4/9e7ae430087b45866e3277ba88dbc69f.jpg"><div class="details"><strong>फ्रेश लाइम सोडा</strong><small>नींबू सोडा – गर्मियों के लिए परफेक्ट।</small></div><div class="price">₹110</div></div>
+    <div class="item"><img src="https://i.pinimg.com/1200x/72/35/31/7235310bc5006df6513a2129c0c87842.jpg"><div class="details"><strong>वर्जिन मोजिटो</strong><small>पुदीना और नींबू से बना ठंडा मॉकटेल।</small></div><div class="price">₹120</div></div>
+    <div class="item"><img src="https://i.pinimg.com/736x/ea/76/40/ea76403ee1bcb4d5da319115b9a5cff8.jpg"><div class="details"><strong>छाछ</strong><small>हल्के मसालों वाली ठंडी छाछ।</small></div><div class="price">₹60</div></div>
+    <div class="item"><img src="https://i.pinimg.com/1200x/5b/47/c9/5b47c93f1ca8e76d53f720ae1472950c.jpg"><div class="details"><strong>लस्सी</strong><small>पंजाब की पारंपरिक मीठी दही की ड्रिंक।</small></div><div class="price">₹80</div></div>
+    <div class="item"><img src="https://i.pinimg.com/736x/79/6c/34/796c34906c9111f02f41a319298a261b.jpg"><div class="details"><strong>कोल्ड ड्रिंक</strong><small>ठंडी और ताज़गी भरी सॉफ्ट ड्रिंक।</small></div><div class="price">₹25</div></div>
+  </div>
+
+  <div class="menu-section">
+    <h2>सूप</h2>
+    <div class="item"><img src="https://i.pinimg.com/1200x/de/9c/64/de9c64bbc85ae9554708dc3f388a7988.jpg"><div class="details"><strong>वेज हॉट एंड सॉर सूप</strong><small>मसालेदार और खट्टा सूप ताज़ी सब्जियों के साथ।</small></div><div class="price">₹99</div></div>
+    <div class="item"><img src="https://i.pinimg.com/736x/ca/54/54/ca54544b2c308f248425147001be1b07.jpg"><div class="details"><strong>वेज लेमन कोरिएंडर सूप</strong><small>नींबू और धनिए के स्वाद वाला हल्का सूप।</small></div><div class="price">₹100</div></div>
+    <div class="item"><img src="https://i.pinimg.com/736x/a1/4d/59/a14d595797bf421cd91cca756d882ca8.jpg"><div class="details"><strong>वेज मंचाउ सूप</strong><small>गरम इंडो-चाइनीज सूप कुरकुरे नूडल्स के साथ।</small></div><div class="price">₹100</div></div>
+    <div class="item"><img src="https://i.pinimg.com/1200x/3c/29/0b/3c290be19ba094cd2795f39488e4aeac.jpg"><div class="details"><strong>वेज नूडल सूप</strong><small>नूडल्स और सब्जियों वाला हल्का गरम सूप।</small></div><div class="price">₹99</div></div>
+  </div>
+
+  <div class="menu-section">
+    <h2>स्टार्टर्स</h2>
+    <div class="item"><img src="https://i.pinimg.com/736x/7d/8a/12/7d8a12aa7a8599e72c85d21388c280f8.jpg"><div class="details"><strong>चीज़ कॉर्न बॉल्स</strong><small>चीज़ और कॉर्न से बने सुनहरे तले बॉल्स।</small></div><div class="price">₹220</div></div>
+    <div class="item"><img src="https://i.pinimg.com/1200x/be/7b/c9/be7bc98fc9cb1dcc8f9cbf4bd0da85ba.jpg"><div class="details"><strong>पोटैटो क्रोकेट्स</strong><small>मसालेदार आलू के कुरकुरे रोल्स।</small></div><div class="price">₹199</div></div>
+    <div class="item"><img src="https://i.pinimg.com/736x/4b/60/e8/4b60e8541069c5f7dd86110df4afbda0.jpg"><div class="details"><strong>चीज़ चस्का</strong><small>क्रीमी स्वाद वाले चीज़ बाइट्स।</small></div><div class="price">₹250</div></div>
+    <div class="item"><img src="https://i.pinimg.com/736x/e0/5f/9d/e05f9dd0a0db30d3097b3b1e094abdec.jpg"><div class="details"><strong>पनीर पॉपकॉर्न</strong><small>पनीर के छोटे कुरकुरे टुकड़े।</small></div><div class="price">₹250</div></div>
+    <div class="item"><img src="https://i.pinimg.com/736x/10/65/24/106524877e55b8a04135577c9fd65db4.jpg"><div class="details"><strong>फिश फिंगर</strong><small>तले हुए मछली के टुकड़े टार्टर सॉस के साथ।</small></div><div class="price">₹340</div></div>
+    <div class="item"><img src="https://i.pinimg.com/1200x/77/45/54/774554e07ee69477f9c7dca2f3b6baab.jpg"><div class="details"><strong>चिकन पॉपकॉर्न</strong><small>कुरकुरे तले हुए चिकन के छोटे टुकड़े।</small></div><div class="price">₹299</div></div>
+    <div class="item"><img src="https://i.pinimg.com/1200x/4e/a4/a1/4ea4a1b16e84f8310a3319d7760606d3.jpg"><div class="details"><strong>अरबिता पास्ता</strong><small>मसालेदार टमाटर सॉस वाला इटालियन पास्ता।</small></div><div class="price">₹250</div></div>
+    <div class="item"><img src="https://i.pinimg.com/736x/5f/b9/ca/5fb9ca7393ac6c9d3c209c73d7f0999c.jpg"><div class="details"><strong>स्पेगेटी पास्ता</strong><small>हर्ब्स और चीज़ के साथ क्लासिक पास्ता।</small></div><div class="price">₹260</div></div>
+    <div class="item"><img src="https://i.pinimg.com/736x/e8/49/97/e849973f5d177440cf2d9cdbcbca24e9.jpg"><div class="details"><strong>वेज मंचूरियन ड्राय</strong><small>मसालेदार मंचूरियन सॉस में तले हुए वेज बॉल्स।</small></div><div class="price">₹199</div></div>
+    <div class="item"><img src="https://i.pinimg.com/1200x/56/d9/53/56d95390b09e676191e43e6494c8dcc5.jpg"><div class="details"><strong>चिली पोटैटो</strong><small>तीखी चिली सॉस में तले हुए आलू।</small></div><div class="price">₹199</div></div>
+    <div class="item"><img src="https://i.pinimg.com/1200x/3e/8a/7c/3e8a7cf89e33a1a5691d9775861a8c51.jpg"><div class="details"><strong>पनीर 65</strong><small>दक्षिण भारतीय स्टाइल का मसालेदार पनीर।</small></div><div class="price">₹220</div></div>
+    <div class="item"><img src="https://i.pinimg.com/1200x/bd/d2/cf/bdd2cf973419568da097ed78072c43d2.jpg"><div class="details"><strong>पनीर चिली ड्राय</strong><small>पनीर, शिमला मिर्च और मसालेदार सॉस के साथ।</small></div><div class="price">₹220</div></div>
+  </div>
+</div>
+
+<!-- MARATHI MENU -->
+<div class="menu" data-lang="marathi">
+  <div class="menu-section">
+    <h2>सॅलड आणि रायता</h2>
+    <div class="item"><img src="https://feelgoodfoodie.net/wp-content/uploads/2024/06/Mixed-Greens-Salad-08.jpg"><div class="details"><strong>ग्रीन सॅलड</strong><small>काकडी, टोमॅटो, गाजर आणि लेट्यूसचे ताजे मिश्रण.</small></div><div class="price">₹100</div></div>
+    <div class="item"><img src="https://www.indianveggiedelight.com/wp-content/uploads/2020/11/boondi-raita-1536x2048.jpg"><div class="details"><strong>बुंदी रायता</strong><small>खमंग बुंदी थंड दह्यात हलक्या मसाल्यांसह.</small></div><div class="price">₹100</div></div>
+    <div class="item"><img src="https://www.plantbasedredhead.com/wp-content/uploads/2024/06/raita-mit-gurken-tomaten-zwiebel-vegan-mixed-veg-raita-cucumber-tomato-onion-mint_plantbasedredhead_1x1.jpg"><div class="details"><strong>मिक्स व्हेज रायता</strong><small>दह्यात काकडी, कांदा, टोमॅटो आणि मसाले मिसळलेले.</small></div><div class="price">₹80</div></div>
+    <div class="item"><img src="https://enjoyinfourseason.com/wp-content/uploads/2022/05/Fourseason-PLAIN-CURD.jpg"><div class="details"><strong>साधं दही</strong><small>घरगुती बनवलेलं ताजं आणि थंड दही.</small></div><div class="price">₹50</div></div>
+    <div class="item"><img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Fried_Masala_Papad.jpg"><div class="details"><strong>फ्रायड पापड</strong><small>गरमागरम कुरकुरीत तळलेले पापड.</small></div><div class="price">₹30</div></div>
+    <div class="item"><img src="https://i.pinimg.com/736x/bc/b7/d6/bcb7d654e8e5b917eaf75cf8eff99c90.jpg"><div class="details"><strong>मसाला पापड</strong><small>पापडावर कांदा, टोमॅटो आणि चाट मसाला टाकलेला.</small></div><div class="price">₹45</div></div>
+    <div class="item"><img src="https://i.pinimg.com/1200x/ad/e9/93/ade9930860389b173f88ef4a524d604b.jpg"><div class="details"><strong>रोस्टेड पापड</strong><small>धुरकट चवीचा भाजलेला कुरकुरीत पापड.</small></div><div class="price">₹30</div></div>
+  </div>
+
+  <div class="menu-section">
+    <h2>पेय पदार्थ</h2>
+    <div class="item"><img src="https://i.pinimg.com/736x/97/7f/16/977f16f7f3e39dc9f015d9441a903e0b.jpg"><div class="details"><strong>मिनरल वॉटर</strong><small>शुद्ध आणि ताजं बाटलीबंद पाणी.</small></div><div class="price">₹20</div></div>
+    <div class="item"><img src="https://i.pinimg.com/1200x/c2/aa/86/c2aa86736b4d9b650f12d65c3947e804.jpg"><div class="details"><strong>फ्रेश लिम्बू पाणी</strong><small>ताजं आणि आंबटसरस नींबूचं पेय.</small></div><div class="price">₹80</div></div>
+    <div class="item"><img src="https://i.pinimg.com/736x/9e/7a/e4/9e7ae430087b45866e3277ba88dbc69f.jpg"><div class="details"><strong>फ्रेश लिम्बू सोडा</strong><small>नींबू सोडा – उन्हाळ्यासाठी परफेक्ट पेय.</small></div><div class="price">₹110</div></div>
+    <div class="item"><img src="https://i.pinimg.com/1200x/72/35/31/7235310bc5006df6513a2129c0c87842.jpg"><div class="details"><strong>व्हर्जिन मोजिटो</strong><small>पुदिना आणि नींबू असलेलं थंडगार मॉकटेल.</small></div><div class="price">₹120</div></div>
+    <div class="item"><img src="https://i.pinimg.com/736x/ea/76/40/ea76403ee1bcb4d5da319115b9a5cff8.jpg"><div class="details"><strong>ताक</strong><small>हलक्या मसाल्यांसह थंडगार ताक.</small></div><div class="price">₹60</div></div>
+    <div class="item"><img src="https://i.pinimg.com/1200x/5b/47/c9/5b47c93f1ca8e76d53f720ae1472950c.jpg"><div class="details"><strong>लस्सी</strong><small>पंजाबमधील पारंपारिक गोड दहीचं पेय.</small></div><div class="price">₹80</div></div>
+    <div class="item"><img src="https://i.pinimg.com/736x/79/6c/34/796c34906c9111f02f41a319298a261b.jpg"><div class="details"><strong>कोल्ड ड्रिंक</strong><small>थंड आणि ताजेतवाने सॉफ्ट ड्रिंक.</small></div><div class="price">₹25</div></div>
+  </div>
+
+  <div class="menu-section">
+    <h2>सूप</h2>
+    <div class="item"><img src="https://i.pinimg.com/1200x/de/9c/64/de9c64bbc85ae9554708dc3f388a7988.jpg"><div class="details"><strong>व्हेज हॉट अँड सॉर सूप</strong><small>तिखट आणि आंबट चवीचं सूप ताज्या भाज्यांसह.</small></div><div class="price">₹99</div></div>
+    <div class="item"><img src="https://i.pinimg.com/736x/ca/54/54/ca54544b2c308f248425147001be1b07.jpg"><div class="details"><strong>व्हेज लेमन कोथिंबीर सूप</strong><small>लिंबू आणि कोथिंबीरीच्या चवीचं हलकं सूप.</small></div><div class="price">₹100</div></div>
+    <div class="item"><img src="https://i.pinimg.com/736x/a1/4d/59/a14d595797bf421cd91cca756d882ca8.jpg"><div class="details"><strong>व्हेज मंचाव सूप</strong><small>इंडो-चायनीज शैलीतील गरम सूप कुरकुरीत नूडल्ससह.</small></div><div class="price">₹100</div></div>
+    <div class="item"><img src="https://i.pinimg.com/1200x/3c/29/0b/3c290be19ba094cd2795f39488e4aeac.jpg"><div class="details"><strong>व्हेज नूडल सूप</strong><small>भाज्या आणि नूडल्स असलेलं सौम्य सूप.</small></div><div class="price">₹99</div></div>
+  </div>
+
+  <div class="menu-section">
+    <h2>स्टार्टर्स</h2>
+    <div class="item"><img src="https://i.pinimg.com/736x/7d/8a/12/7d8a12aa7a8599e72c85d21388c280f8.jpg"><div class="details"><strong>चीज कॉर्न बॉल्स</strong><small>चीज आणि कॉर्नपासून बनवलेले खमंग तळलेले बॉल्स.</small></div><div class="price">₹220</div></div>
+    <div class="item"><img src="https://i.pinimg.com/1200x/be/7b/c9/be7bc98fc9cb1dcc8f9cbf4bd0da85ba.jpg"><div class="details"><strong>पोटॅटो क्रोकेट्स</strong><small>मसालेदार बटाट्याचे कुरकुरीत रोल्स.</small></div><div class="price">₹199</div></div>
+    <div class="item"><img src="https://i.pinimg.com/736x/4b/60/e8/4b60e8541069c5f7dd86110df4afbda0.jpg"><div class="details"><strong>चीज चस्का</strong><small>क्रीमी चवीचे स्वादिष्ट चीज बाईट्स.</small></div><div class="price">₹250</div></div>
+    <div class="item"><img src="https://i.pinimg.com/736x/e0/5f/9d/e05f9dd0a0db30d3097b3b1e094abdec.jpg"><div class="details"><strong>पनीर पॉपकॉर्न</strong><small>कुरकुरीत तळलेले पनीरचे छोटे तुकडे.</small></div><div class="price">₹250</div></div>
+    <div class="item"><img src="https://i.pinimg.com/736x/10/65/24/106524877e55b8a04135577c9fd65db4.jpg"><div class="details"><strong>फिश फिंगर</strong><small>सोनेरी तळलेली मासळी टार्टर सॉसबरोबर.</small></div><div class="price">₹340</div></div>
+    <div class="item"><img src="https://i.pinimg.com/1200x/77/45/54/774554e07ee69477f9c7dca2f3b6baab.jpg"><div class="details"><strong>चिकन पॉपकॉर्न</strong><small>खमंग तळलेले चिकनचे छोटे तुकडे.</small></div><div class="price">₹299</div></div>
+    <div class="item"><img src="https://i.pinimg.com/1200x/4e/a4/a1/4ea4a1b16e84f8310a3319d7760606d3.jpg"><div class="details"><strong>अरबिटा पास्ता</strong><small>मसालेदार टोमॅटो सॉससह इटालियन पास्ता.</small></div><div class="price">₹250</div></div>
+    <div class="item"><img src="https://i.pinimg.com/736x/5f/b9/ca/5fb9ca7393ac6c9d3c209c73d7f0999c.jpg"><div class="details"><strong>स्पॅघेटी पास्ता</strong><small>हर्ब्स आणि चीजसह क्लासिक पास्ता.</small></div><div class="price">₹260</div></div>
+    <div class="item"><img src="https://i.pinimg.com/736x/e8/49/97/e849973f5d177440cf2d9cdbcbca24e9.jpg"><div class="details"><strong>व्हेज मंचूरियन ड्राय</strong><small>मसालेदार मंचूरियन सॉसमध्ये तळलेले वेज बॉल्स.</small></div><div class="price">₹199</div></div>
+    <div class="item"><img src="https://i.pinimg.com/1200x/56/d9/53/56d95390b09e676191e43e6494c8dcc5.jpg"><div class="details"><strong>चिली पोटॅटो</strong><small>तिखट चिली सॉसमध्ये तळलेले बटाटे.</small></div><div class="price">₹199</div></div>
+    <div class="item"><img src="https://i.pinimg.com/1200x/3e/8a/7c/3e8a7cf89e33a1a5691d9775861a8c51.jpg"><div class="details"><strong>पनीर 65</strong><small>दक्षिण भारतीय शैलीतील मसालेदार पनीर.</small></div><div class="price">₹220</div></div>
+    <div class="item"><img src="https://i.pinimg.com/1200x/bd/d2/cf/bdd2cf973419568da097ed78072c43d2.jpg"><div class="details"><strong>पनीर चिली ड्राय</strong><small>पनीर, ढोबळी मिरची आणि मसालेदार सॉससह.</small></div><div class="price">₹220</div></div>
+  </div>
+</div>
+
+  <script>
+    const buttons = document.querySelectorAll('.tab-btn');
+    const menus = document.querySelectorAll('.menu');
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const lang = btn.dataset.lang;
+        menus.forEach(menu => {
+          menu.classList.toggle('active', menu.dataset.lang === lang);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
